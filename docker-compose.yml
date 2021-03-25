@@ -1,0 +1,21 @@
+version: "3"
+services:
+  front:
+    build: ./front-end/
+    ports:
+      - "8080:8080"
+    networks:
+      - dashboard
+    depends_on:
+      - back
+    # restart: 'on-failure'
+  back:
+    build: ./backend/
+    ports:
+      - "3000:3000"
+    networks:
+      - dashboard
+    # restart: 'on-failure'
+
+networks:
+  dashboard:

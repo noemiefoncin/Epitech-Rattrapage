@@ -171,13 +171,3 @@ export default {
   },
 };
 </script>
-
-<!--
-<script>
-export default {
-  name: "TestingWidget",
-};
-</script>
-
-<style scoped></style>
--->

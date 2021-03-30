@@ -51,6 +51,13 @@
         World's informations about Covid-19
       </button>
       </div>
+        <div>
+        <h1/>
+      <h3>SOCIAL MEDIA</h3>
+      <button id="getWeather" v-on:click="getFacebookWidget">
+        Connect to facebook
+      </button>
+      </div>
     </div>
   </div>
 </template>
@@ -223,6 +230,24 @@ export default {
         .catch(console.log);
       window.location.reload();
     },
+    getFacebookWidget: function() {
+      fetch("http://localhost:3000/api/auth/widget", {
+        method: "post",
+        body: JSON.stringify({
+          widget: "FacebookWidget",
+          parameters: {
+            refreshRate: 1000,
+          },
+        }),
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: window.localStorage.token,
+        }),
+      })
+        .then((response) => response.json())
+        .catch(console.log);
+      window.location.reload();
+    },
   },
 };
 </script>
@@ -275,6 +300,8 @@ export default {
 
 .modale {
   background-image: url(../images/background.jpg);
+  background-color: lightgreen;
+  /* no its the background of the selection modal */
   color: black;
   padding: 50px;
   position: fixed;

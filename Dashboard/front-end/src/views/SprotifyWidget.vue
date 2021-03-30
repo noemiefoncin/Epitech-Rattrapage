@@ -1,5 +1,6 @@
 <template>
   <div class="calculator">
+<br>
     <div class="display">{{ current || "0" }}</div>
     <div @click="clear" class="btn">C</div>
     <div @click="sign" class="btn">+/-</div>
@@ -20,6 +21,7 @@
     <div @click="append('0')" class="btn zero">0</div>
     <div @click="dot" class="btn">.</div>
     <div @click="equal" class="btn operator">=</div>
+    <br>
   </div>
 </template>
 
@@ -98,6 +100,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(50px, auto);
+  text-align: center;
 }
 .display {
   grid-column: 1 / 5;
@@ -115,4 +118,5 @@ export default {
   background-color: orange;
   color: white;
 }
+
 </style>

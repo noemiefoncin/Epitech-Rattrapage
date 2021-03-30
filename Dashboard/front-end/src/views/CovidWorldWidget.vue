@@ -6,7 +6,7 @@
         id="position"
         v-model="requete"
         v-on:keypress="goMeteo"
-        placeholder="Ex: Paris, London..."
+        placeholder="Ex: France, Italy ..."
       />
     </div>
     <p></p>

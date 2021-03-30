@@ -6,12 +6,15 @@
         id="position"
         v-model="requete"
         v-on:keypress="goMeteo"
-        placeholder="Ex: Paris, London..."
+        placeholder="Ex: Rhône, Ain ..."
       />
     </div>
     <p></p>
     <div v-if="temps">
-<img v-bind:src="temps" />
+       <h4>Position: {{ temps.LiveDataByDepartement[0].nom}} </h4>
+      <h5>In hospital: {{ temps.LiveDataByDepartement[0].hospitalises}}</h5>
+      <h5>In reanimation: {{ temps.LiveDataByDepartement[0].reanimation}}</h5>
+      <h5>Deaths: {{ temps.LiveDataByDepartement[0].deces}}</h5>
     </div>
   </div>
 </template>
@@ -24,7 +27,7 @@ export default {
     return {
       requete: '',
       temps: undefined,
-      url_recherche: "https://http.cat/",
+    url_recherche: "https://coronavirusapi-france.now.sh/LiveDataByDepartement?Departement=",
     }
   },
   methods: {
@@ -41,3 +44,4 @@ export default {
   }
 }
 </script>
+

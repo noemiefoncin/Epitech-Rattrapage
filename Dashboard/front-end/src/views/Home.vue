@@ -43,6 +43,10 @@
           {{ widget.widget }}
           <weightConvertissorWidget></weightConvertissorWidget>
         </div>
+        <div class="bloc-modale" v-if="widget.widget == 'FacebookWidget'">
+          {{ widget.widget }}
+          <facebook></facebook>
+        </div>
         <div class="bloc-modale" v-if="widget.widget == 'Testing'">
           {{ widget.widget }}
           <testWidget></testWidget>
@@ -72,7 +76,8 @@ import TempConvertissorWidget from "./TempConvertissorWidget";
 import WeightConvertissorWidget from "./WeightConvertissorWidget";
 import CovidWorldWidget from "./CovidWorldWidget";
 import AirQualityWidget from "./AirQualityWidget";
-import CovidFranceWidget from './CovidFranceWidget.vue';
+import CovidFranceWidget from "./CovidFranceWidget.vue";
+import FacebookWidget from "./FacebookWidget.vue";
 
 export default {
   name: "Home",
@@ -93,6 +98,7 @@ export default {
     airQuality: AirQualityWidget,
     covidFrance: CovidFranceWidget,
     covidWorld: CovidWorldWidget,
+    facebook: FacebookWidget,
   },
   methods: {
     toggleModale: function() {
@@ -161,6 +167,7 @@ export default {
 
 #frame {
   background-image: url(../images/background.jpg);
+  /* No it is the background of the widget not the frame itself */
   padding-top: 30px;
   border: 1px solid red;
   display: inline-block;

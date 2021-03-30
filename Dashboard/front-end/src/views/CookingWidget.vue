@@ -1,12 +1,13 @@
 <template>
   <div class="search">
-    <h2>Type In Your Search Term</h2>
+    <h2>Search your favourite Planet</h2>
     <form v-on:submit.prevent="getResult(query)">
       <input type="text" placeholder="Type in your search" v-model="query" />
     </form>
-    <div class="results" v-if="results">
-      <div v-for="result in results" :key="result">
-        <img v-bind:src="result.links[0].href" />
+   <div class="results" v-if="results">
+      <div v-for="result in results" :key="result"> 
+        <!-- <img v-bind:src="result.links.href[0]" /> -->
+       <img v-bind:src="result.links[0].href" />
       </div>
     </div>
   </div>

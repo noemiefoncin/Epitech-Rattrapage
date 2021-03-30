@@ -4,7 +4,6 @@
       href="https://fonts.googleapis.com/css?family=Mukta"
       rel="stylesheet"
     />
-    <h1 class="title">Temperature Converter</h1>
     <div class="boxes">
       <select id="options" name="sel">
         <option disabled value="">Please select one</option>
@@ -21,13 +20,21 @@
         <option value="F -> R">F -> R</option>
         <option value="K -> R">K -> R</option>
       </select>
+      <br>
+      <br>
       <input id="in" name="message" placeholder="Input" />
+      <br>
+      <br>
       <input id="out" name="out" placeholder="Output" />
+      <br>
+      <br>
     </div>
     <div id="vm">
-      <button v-on:click="convert" id="btn" type="button" class="btn">
+      <button v-on:click="convert" id="btn-convert" type="button" class="btn-convert">
         Convert
       </button>
+      <br>
+      <br>
     </div>
   </div>
 </template>
@@ -82,7 +89,7 @@ body {
   background-color: #8daa91;
   font-family: "Mukta", sans-serif;
 }
-.btn {
+.btn-convert {
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
 }
@@ -103,8 +110,8 @@ body {
 #in,
 #options,
 #btn {
-  border: 0px;
-  border-radius: 25px;
+  border: 10px;
+  border-color: black ;
   text-align: center;
 }
 #btn {

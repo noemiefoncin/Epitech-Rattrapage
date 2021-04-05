@@ -2,8 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const controller = require("./controllers/user");
 
-//const stuffRoutes = require("./routes/stuff");
 const userRoutes = require("./routes/user");
 const aboutRoutes = require("./routes/about");
 
@@ -35,8 +35,8 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-//app.use("/api/stuff", stuffRoutes);
 app.use("/api/auth", userRoutes);
+app.use("/auth/google", controller.getInstagramAuth);
 app.use("/about.json", aboutRoutes);
 
 module.exports = app;

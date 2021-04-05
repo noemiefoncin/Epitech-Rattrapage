@@ -47,6 +47,10 @@
           {{ widget.widget }}
           <facebook></facebook>
         </div>
+        <div class="bloc-modale" v-if="widget.widget == 'TwitterWidget'">
+          {{ widget.widget }}
+          <twitter></twitter>
+        </div>
         <div class="bloc-modale" v-if="widget.widget == 'Testing'">
           {{ widget.widget }}
           <testWidget></testWidget>
@@ -78,6 +82,7 @@ import CovidWorldWidget from "./CovidWorldWidget";
 import AirQualityWidget from "./AirQualityWidget";
 import CovidFranceWidget from "./CovidFranceWidget.vue";
 import FacebookWidget from "./FacebookWidget.vue";
+import TwitterWidget from "./TwitterWidget";
 
 export default {
   name: "Home",
@@ -99,6 +104,7 @@ export default {
     covidFrance: CovidFranceWidget,
     covidWorld: CovidWorldWidget,
     facebook: FacebookWidget,
+    twitter: TwitterWidget,
   },
   methods: {
     toggleModale: function() {
@@ -147,8 +153,8 @@ export default {
         console.log(`Error: ${JSON.stringify(error)}`);
         router.push("/disconnect");
       });
-    this.update();
-    this.timer = setInterval(this.update, this.parameters.refreshRate * 1000);
+    // this.update();
+    // this.timer = setInterval(this.update, this.parameters.refreshRate * 1000);
   },
   update: function() {
     this.date = new Date().toUTCString();

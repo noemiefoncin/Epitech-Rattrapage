@@ -5,58 +5,61 @@
       <div class="btn-modale btn btn-danger" v-on:click="toggleModale">X</div>
       <h2 id="select-widgets">-Select your widgets in the list down below-</h2>
       <div>
-        <h1/>
-      <h3>WEATHER</h3>
-      <button id="getWeather" v-on:click="getAirQualityWidget">
-        Informations about air quality on a given city.
-      </button>
-      <button id="getWeather" v-on:click="getWeatherWidget">
-        Click here to get the weather
-      </button>
-      <button id="getWeather" v-on:click="getCookingWidget">
-        Click here to get a NASA widget
-      </button>
+        <h1 />
+        <h3>WEATHER</h3>
+        <button id="getWeather" v-on:click="getAirQualityWidget">
+          Informations about air quality on a given city.
+        </button>
+        <button id="getWeather" v-on:click="getWeatherWidget">
+          Click here to get the weather
+        </button>
+        <button id="getWeather" v-on:click="getCookingWidget">
+          Click here to get a NASA widget
+        </button>
       </div>
       <div>
-        <h1/>
-      <h3>MATHEMATICS</h3>
-      <button id="getWeather" v-on:click="getSpotifyWidget">
-        Click here to get a calculator
-      </button>
+        <h1 />
+        <h3>MATHEMATICS</h3>
+        <button id="getWeather" v-on:click="getSpotifyWidget">
+          Click here to get a calculator
+        </button>
       </div>
       <div>
-        <h1/>
-      <h3>CONVERTERS</h3>
-      <button id="getWeather" v-on:click="getTermeratureConverterWidget">
-        Click here to get get a temperature converter
-      </button>
-      <button id="getWeather" v-on:click="getWeightConverterWidget">
-        Click here to get get a weight converter
-      </button>
+        <h1 />
+        <h3>CONVERTERS</h3>
+        <button id="getWeather" v-on:click="getTermeratureConverterWidget">
+          Click here to get get a temperature converter
+        </button>
+        <button id="getWeather" v-on:click="getWeightConverterWidget">
+          Click here to get get a weight converter
+        </button>
       </div>
       <div>
-        <h1/>
-      <h3>ORGANISATION</h3>
-      <button id="getWeather" v-on:click="getTestWidget">
-        Click here to get get a todo-list
-      </button>
+        <h1 />
+        <h3>ORGANISATION</h3>
+        <button id="getWeather" v-on:click="getTestWidget">
+          Click here to get get a todo-list
+        </button>
       </div>
       <div>
-        <h1/>
-      <h3>COVID-19</h3>
-      <button id="getWeather" v-on:click="getCovidFranceWidget">
-        France's informations about Covid-19
-      </button>
-      <button id="getWeather" v-on:click="getCovidWorldWidget">
-        World's informations about Covid-19
-      </button>
+        <h1 />
+        <h3>COVID-19</h3>
+        <button id="getWeather" v-on:click="getCovidFranceWidget">
+          France's informations about Covid-19
+        </button>
+        <button id="getWeather" v-on:click="getCovidWorldWidget">
+          World's informations about Covid-19
+        </button>
       </div>
-        <div>
-        <h1/>
-      <h3>SOCIAL MEDIA</h3>
-      <button id="getWeather" v-on:click="getFacebookWidget">
-        Connect to facebook
-      </button>
+      <div>
+        <h1 />
+        <h3>SOCIAL MEDIA</h3>
+        <button id="getWeather" v-on:click="getFacebookWidget">
+          Connect to facebook
+        </button>
+        <button id="getWeather" v-on:click="getTwitterWidget">
+          Send an email
+        </button>
       </div>
     </div>
   </div>
@@ -248,33 +251,50 @@ export default {
         .catch(console.log);
       window.location.reload();
     },
+    getTwitterWidget: function() {
+      fetch("http://localhost:3000/api/auth/widget", {
+        method: "post",
+        body: JSON.stringify({
+          widget: "TwitterWidget",
+          parameters: {
+            refreshRate: 1000,
+          },
+        }),
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: window.localStorage.token,
+        }),
+      })
+        .then((response) => response.json())
+        .catch(console.log);
+      window.location.reload();
+    },
   },
 };
 </script>
 
 <style scoped>
-
 #getWeather {
   height: 80px;
 }
 
-#getWeightConverter{
+#getWeightConverter {
   background-color: aliceblue;
 }
 
-#getCovid{
+#getCovid {
   background-color: aliceblue;
 }
 
-#getTheWeather{
+#getTheWeather {
   background-color: aliceblue;
 }
 
-#getMathematics{
+#getMathematics {
   background-color: aliceblue;
 }
 
-#getOrganisation{
+#getOrganisation {
   background-color: aliceblue;
 }
 
@@ -317,5 +337,4 @@ export default {
 #select-widgets {
   font-size: 30px;
 }
-
 </style>

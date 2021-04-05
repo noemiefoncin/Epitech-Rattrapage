@@ -1,16 +1,21 @@
 <template>
   <div>
     <!-- <div v-if="connected == false"> -->
-
-    <h5>Please log to your account</h5>
     <button @click="authenticate('google')">auth Google</button>
+    <button @click="logout()">Disconnect</button>
     <!-- <p style="white-space: pre-line;">{{ message }}</p> -->
     <br />
-    <textarea v-model="dest_adress" placeholder="Destinataire"></textarea>
-    <textarea v-model="dest_exp" placeholder="Expeditor"></textarea>
-    <textarea v-model="object" placeholder="Object"></textarea>
-    <textarea v-model="email_content" placeholder="Email"></textarea>
-    <button v-on:click="SendRequest">Send email</button>
+    <div v-if="google_widget_token">
+      <br />
+      <textarea v-model="dest_adress" placeholder="Destinataire"></textarea>
+      <br />
+      <!-- <textarea v-model="dest_exp" placeholder="Expeditor"></textarea> -->
+      <textarea v-model="object" placeholder="Object"></textarea>
+      <br />
+      <textarea v-model="email_content" placeholder="Email"></textarea>
+      <br />
+      <button v-on:click="SendRequest">Send email</button>
+    </div>
   </div>
 </template>
 
@@ -18,6 +23,7 @@
 export default {
   data() {
     return {
+      google_widget_token: localStorage.getItem("google_widget_auth_token"),
       dest_adress: "",
       object: "",
       dest_exp: "",
@@ -26,24 +32,28 @@ export default {
   },
   props: ["connected"],
   methods: {
-    authenticate: function (provider) {
+    authenticate: function(provider) {
+      var tmp = this;
       this.$auth
         .authenticate(provider)
-        .then(function () {
-          const google_widget_token = localStorage.getItem(
+        .then(function() {
+          tmp.google_widget_token = localStorage.getItem(
             "vue-authenticate.vueauth_token"
           );
           localStorage.removeItem("vue-authenticate.vueauth_token");
           localStorage.setItem(
             `${provider}_widget_auth_token`,
-            google_widget_token
+            tmp.google_widget_token
           );
+
           // Execute application logic after successful social authentication
+          window.location.reload();
+          console.log(localStorage.getItem("google_widget_auth_token"));
         })
         .catch(console.error);
-      console.log(localStorage.getItem("google_widget_auth_token"));
     },
     SendRequest() {
+      this.getUserEmailAdress();
       fetch("http://localhost:3000/api/auth/sendEmail", {
         method: "post",
         headers: {
@@ -60,6 +70,25 @@ export default {
       }).then((res) => {
         console.log(res);
       });
+    },
+    logout() {
+      this.google_widget_token = "";
+    },
+    async getUserEmailAdress() {
+      fetch("https://gmail.googleapis.com/gmail/v1/users/me/profile", {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer " + localStorage.getItem("google_widget_auth_token"),
+        },
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          console.log(res);
+        });
     },
   },
 };

@@ -11,7 +11,8 @@ exports.getAbout = (req, res) => {
           widgets: [
             {
               name: " city_temperature ",
-              description: " Display temperature for a city ",
+              description:
+                " Display temperature for a city, and few informations about the weather of the city you are looking for. The api is from openweather. ",
               params: [
                 {
                   name: " city ",
@@ -26,7 +27,7 @@ exports.getAbout = (req, res) => {
           widgets: [
             {
               name: " nasa_widget ",
-              description: " Displays pictures of a selected planet ",
+              description: " Displays a picture of a selected planet ",
               params: [
                 {
                   name: " planet ",
@@ -75,6 +76,21 @@ exports.getAbout = (req, res) => {
               name: " covidInfoWorldWidget ",
               description:
                 " Displays informations about Covid-19 on a given country ",
+              params: [
+                {
+                  name: " city ",
+                  type: " string ",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: " Login Facebook ",
+          widgets: [
+            {
+              name: " Login Facebook ",
+              description: " Displays informations about  ",
               params: [
                 {
                   name: " city ",

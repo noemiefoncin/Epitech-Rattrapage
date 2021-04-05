@@ -5,10 +5,10 @@
       <input type="text" placeholder="Type in your search" v-model="query" />
     </form>
    <div class="results" v-if="results">
-      <div v-for="result in results" :key="result"> 
+      <!-- <div v-for="result in results" :key="result">  -->
         <!-- <img v-bind:src="result.links.href[0]" /> -->
-       <img v-bind:src="result.links[0].href" />
-      </div>
+       <img v-bind:src="results[0].links[0].href" />
+      <!-- </div> -->
     </div>
   </div>
 </template>

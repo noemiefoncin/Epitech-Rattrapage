@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- <div v-if="connected == false"> -->
-    <p>tpaco</p>
+
     <h5>Please log to your account</h5>
     <button @click="authenticate('google')">auth Google</button>
     <!-- <p style="white-space: pre-line;">{{ message }}</p> -->
@@ -26,10 +26,10 @@ export default {
   },
   props: ["connected"],
   methods: {
-    authenticate: function(provider) {
+    authenticate: function (provider) {
       this.$auth
         .authenticate(provider)
-        .then(function() {
+        .then(function () {
           const google_widget_token = localStorage.getItem(
             "vue-authenticate.vueauth_token"
           );

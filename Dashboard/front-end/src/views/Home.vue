@@ -48,7 +48,6 @@
           <facebook></facebook>
         </div>
         <div class="bloc-modale" v-if="widget.widget == 'TwitterWidget'">
-          {{ widget.widget }}
           <twitter></twitter>
         </div>
         <div class="bloc-modale" v-if="widget.widget == 'Testing'">
@@ -107,10 +106,10 @@ export default {
     twitter: TwitterWidget,
   },
   methods: {
-    toggleModale: function() {
+    toggleModale: function () {
       this.revele = !this.revele;
     },
-    deleteWidget: function(index) {
+    deleteWidget: function (index) {
       fetch("http://localhost:3000/api/auth/widgetDeleteWidget", {
         method: "post",
         body: JSON.stringify({
@@ -125,7 +124,7 @@ export default {
         .then((data) => (this.widgets = data.widgets))
         .catch(console.log);
     },
-    refreshWidget: function() {
+    refreshWidget: function () {
       console.log("Refreshing the widget");
       window.location.reload();
     },
@@ -156,10 +155,10 @@ export default {
     // this.update();
     // this.timer = setInterval(this.update, this.parameters.refreshRate * 1000);
   },
-  update: function() {
+  update: function () {
     this.date = new Date().toUTCString();
   },
-  updateComponent: function() {
+  updateComponent: function () {
     this.componentDate = new Date();
   },
 };
